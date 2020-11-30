@@ -2,7 +2,7 @@
     "id": 0,
     "name": "test-pipeline",
     "description": "Plugin to help smoke test our data pipeline.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "sources": [
         {
             "architectures": [
