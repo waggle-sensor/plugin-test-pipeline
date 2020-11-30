@@ -23,4 +23,4 @@ while True:
 
     value = 25.0 + 5*random()
     print('publishing', value, flush=True)
-    plugin.publish('env.temperature', value)
+    plugin.publish('test', value)
