@@ -1,6 +1,9 @@
 import waggle.plugin as plugin
 from random import random
 from time import sleep
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 plugin.init()
 
