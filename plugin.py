@@ -23,4 +23,6 @@ while True:
 
     value = 25.0 + 5*random()
     print('publishing', value, flush=True)
-    plugin.publish('test', value)
+    plugin.publish('test', value, meta={
+        "mytag": "abc123",
+    })
