@@ -22,7 +22,7 @@ def main():
         plugin.publish("test", 25.0 + 5*random())
 
         logging.info("uploading test image file")
-        plugin.upload_file("test.jpg")
+        plugin.upload_file("test.jpg", keep=True)
 
         time.sleep(args.rate)
 
