@@ -1,30 +1,31 @@
-import waggle.plugin as plugin
+import argparse
+import logging
 from random import random
 import time
+from waggle import plugin
 
 
-def randvalue():
-    return 25.0 + 5*random()
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--debug", action="store_true", help="enable debug logs")
+    parser.add_argument("--rate", default=60.0, type=float, help="sampling rate")
+    args = parser.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO,
+                        format="%(asctime)s %(message)s",
+                        datefmt="%Y/%m/%d %H:%M:%S")
+
+    plugin.init()
+
+    while True:
+        logging.info("publishing random measurement")
+        plugin.publish("test", 25.0 + 5*random())
+
+        logging.info("uploading test image file")
+        plugin.upload_file("test.jpg")
+
+        time.sleep(args.rate)
 
 
-plugin.init()
-
-while True:
-    print('publishing measurement', flush=True)
-
-    plugin.publish('test', randvalue(), meta={
-        "mytag": "abc123",
-    })
-
-    print('uploading file', flush=True)
-
-    with open('test-data.txt', 'w') as f:
-        f.write(f'this is a test data file which includes value {randvalue()}.')
-    
-    plugin.upload_file('test-data.txt', labels={
-        'label1': 'value1',
-        'label2': 'value2',
-        'label3': 'value3',
-    })
-
-    time.sleep(10)
+if __name__ == "__main__":
+    main()
