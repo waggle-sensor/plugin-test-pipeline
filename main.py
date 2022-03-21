@@ -2,7 +2,7 @@ import argparse
 import logging
 from random import random
 import time
-from waggle import plugin
+from waggle.plugin import Plugin
 
 
 def main():
@@ -15,16 +15,15 @@ def main():
                         format="%(asctime)s %(message)s",
                         datefmt="%Y/%m/%d %H:%M:%S")
 
-    plugin.init()
+    with Plugin() as plugin:
+        while True:
+            logging.info("publishing random measurement")
+            plugin.publish("test", 25.0 + 5*random())
 
-    while True:
-        logging.info("publishing random measurement")
-        plugin.publish("test", 25.0 + 5*random())
+            logging.info("uploading test image file")
+            plugin.upload_file("test.jpg", keep=True)
 
-        logging.info("uploading test image file")
-        plugin.upload_file("test.jpg", keep=True)
-
-        time.sleep(args.rate)
+            time.sleep(args.rate)
 
 
 if __name__ == "__main__":
