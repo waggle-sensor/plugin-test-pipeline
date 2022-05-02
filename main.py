@@ -8,7 +8,7 @@ from waggle.plugin import Plugin
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--debug", action="store_true", help="enable debug logs")
-    parser.add_argument("--rate", default=60.0, type=float, help="sampling rate")
+    parser.add_argument("--rate", default=300.0, type=float, help="sampling rate")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO,
