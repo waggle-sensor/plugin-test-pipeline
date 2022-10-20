@@ -1,0 +1,10 @@
+name: "test-pipeline"
+version: "0.2"
+description: "Plugin intended to smoke test the entire pipeline."
+keywords: "testing"
+authors: "Sean Shahkarami <sshahkarami@anl.gov>"
+homepage: "https://github.com/waggle-sensor/plugin-test-pipeline"
+source:
+  architectures:
+    - "linux/amd64"
+    - "linux/arm64"
